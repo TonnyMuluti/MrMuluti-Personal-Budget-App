@@ -1,52 +1,35 @@
-# MrMuluti Personal Budget 2026 Pro — Cloud Edition v2.1
+# MrMuluti Personal Budget 2026 Pro — Smart Finance Edition v3.0
 
-React + Vite personal finance app with Supabase authentication, PostgreSQL cloud storage, Row Level Security, automatic sync, local cache, backup import/export, monthly budget, transactions, bills, savings goals, vehicle payoff, annual overview, what-if planning and insights.
+Cloud budget app built with React, Vite and Supabase.
 
-## Local environment
-Create `.env.local` beside `package.json`:
+## New in v3.0
 
-```text
-VITE_SUPABASE_URL=https://YOUR_PROJECT.supabase.co
-VITE_SUPABASE_PUBLISHABLE_KEY=sb_publishable_YOUR_KEY
-```
+- Improved mobile layout with a fixed bottom navigation bar
+- 12 month history with income, expenses, savings and net cash flow
+- Bill alerts with overdue, urgent, upcoming and paid states
+- Optional browser bill notifications
+- Enhanced savings goals with target dates and required monthly contribution
+- Vehicle finance progress, months saved and extra-payment comparison chart
+- Report centre with charts
+- Downloadable PDF budget report
+- Downloadable Excel workbook with Summary, Expenses, Transactions, Savings Goals and 12 Month History sheets
+- Existing Supabase cloud sync, authentication, RLS, backup import/export and local cache remain intact
 
-Never add a service-role or secret key to this browser app.
+## Local setup
 
-## Local run
+1. Run `npm install`
+2. Copy `.env.example` to `.env.local`
+3. Set:
+   - `VITE_SUPABASE_URL`
+   - `VITE_SUPABASE_PUBLISHABLE_KEY`
+4. Run `npm run dev`
 
-```bash
-npm install
-npm run dev
-```
+## Production / Vercel
 
-## Production build
+The same two environment variables must exist in Vercel for Production. They are Vite browser configuration values; use the Supabase **publishable** key, never a secret/service-role key.
 
-```bash
-npm run build
-npm run preview
-```
+After pushing this version to GitHub, Vercel should deploy automatically. If not, redeploy the latest `main` branch commit.
 
-## Vercel deployment
-This project includes `vercel.json` so client-side routes fall back to `index.html`.
+## Supabase
 
-In Vercel, add these Environment Variables for Production, Preview, and Development:
-
-- `VITE_SUPABASE_URL`
-- `VITE_SUPABASE_PUBLISHABLE_KEY`
-
-Use Build Command `npm run build` and Output Directory `dist` if Vercel does not detect Vite automatically.
-
-## Supabase production URL
-After Vercel gives you a production URL, open Supabase > Authentication > URL Configuration:
-
-- Set **Site URL** to the production Vercel URL.
-- Add the production URL to **Redirect URLs**.
-- Keep `http://localhost:5173` as a redirect URL while developing locally.
-
-Email confirmation and password-reset links will then be able to return to the deployed app.
-
-## Existing cloud data
-Signing into the same Supabase account on the deployed app loads the same cloud budget data. Your local browser cache is only a responsiveness/offline convenience layer.
-
-## v2.0.1 hotfix retained
-The React hook-order login crash remains fixed in this build.
+No new database tables are required for v3.0. The new views use the existing transactions, bills, savings goals, debt and settings data already synced by the app.

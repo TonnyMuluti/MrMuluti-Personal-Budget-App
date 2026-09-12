@@ -17,7 +17,8 @@ export async function loadCloudData(userId, fallback) {
   const transactions = (txR.data || []).map(t=>({id:t.id,date:t.transaction_date,description:t.description,type:t.transaction_type,category:t.category,categoryId:byName[t.category]||null,amount:n(t.amount),method:t.payment_method||'',notes:t.notes||''}))
   const bills = (billsR.data || []).map(b=>({id:b.id,name:b.name,dueDay:b.due_day||1,priority:b.priority||'Medium',method:b.payment_method||'',autopay:!!b.autopay}))
   const goals = (goalsR.data || []).map(g=>({id:g.id,name:g.name,target:n(g.target_amount),saved:n(g.saved_amount),targetDate:g.target_date||'',notes:g.notes||''}))
-  const d = debtsR.data?.[0]
+  const debtRows = debtsR.data || []
+  const d = debtRows[0]
   const w = whatR.data?.[0]
   const a = appR.data?.[0]
   return {
@@ -29,6 +30,7 @@ export async function loadCloudData(userId, fallback) {
     bills:bills.length?bills:fallback.bills,
     savingsGoals:goals.length?goals:fallback.savingsGoals,
     debt:d?{scheduledBalance:n(d.current_balance),apr:n(d.annual_interest_rate),monthlyInstalment:n(d.monthly_payment),officialMonthsRemaining:d.bank_instalments_remaining||56,officialFinalDate:d.bank_final_instalment_date||'2031-03-25',extraPayment:n(d.extra_payment)}:fallback.debt,
+    debts:debtRows.length?debtRows.map((x,i)=>({id:x.id||`debt-${i}`,name:x.name||`Debt ${i+1}`,scheduledBalance:n(x.current_balance),apr:n(x.annual_interest_rate),monthlyInstalment:n(x.monthly_payment),officialMonthsRemaining:x.bank_instalments_remaining||0,officialFinalDate:x.bank_final_instalment_date||'',extraPayment:n(x.extra_payment)})):(fallback.debts||[{id:'vehicle-finance',name:'Vehicle Finance',...fallback.debt}]),
     whatIf:w?{extraIncome:n(w.extra_income),expenseCuts:n(w.expense_cuts),extraSavings:n(w.extra_savings),extraDebt:n(w.extra_debt_payment),emergencyTarget:n(w.emergency_fund_target)}:fallback.whatIf
   }
 }
@@ -56,5 +58,6 @@ export async function saveCloudData(userId, data) {
   await replaceRows('transactions',userId,data.transactions.map(t=>({user_id:userId,transaction_date:t.date,description:t.description||t.category||'Transaction',payment_method:t.method||null,transaction_type:t.type||'Expense',category:t.category||null,amount:n(t.amount),notes:t.notes||null})))
   await replaceRows('bills',userId,data.bills.map(b=>({user_id:userId,name:b.name,monthly_amount:n(data.expenses.find(e=>e.name===b.name)?.budget),due_day:n(b.dueDay)||1,priority:b.priority||'Medium',payment_method:b.method||null,autopay:!!b.autopay,active:true})))
   await replaceRows('savings_goals',userId,data.savingsGoals.map(g=>({user_id:userId,name:g.name,target_amount:n(g.target),saved_amount:n(g.saved),target_date:g.targetDate||null,notes:g.notes||null,completed:n(g.target)>0&&n(g.saved)>=n(g.target)})))
-  await replaceRows('debts',userId,[{user_id:userId,name:'Vehicle Finance',current_balance:d.scheduledBalance,annual_interest_rate:d.apr,monthly_payment:d.monthlyInstalment,extra_payment:d.extraPayment,bank_instalments_remaining:d.officialMonthsRemaining,bank_final_instalment_date:d.officialFinalDate,residual_value:0,arrears_advance:2.48,statement_date:'2026-08-10',calculation_start_date:'2026-08-25'}])
+  const debts=(data.debts?.length?data.debts:[{name:'Vehicle Finance',...d}])
+  await replaceRows('debts',userId,debts.map((x,i)=>({user_id:userId,name:x.name||`Debt ${i+1}`,current_balance:n(x.scheduledBalance),annual_interest_rate:n(x.apr),monthly_payment:n(x.monthlyInstalment),extra_payment:n(x.extraPayment),bank_instalments_remaining:n(x.officialMonthsRemaining),bank_final_instalment_date:x.officialFinalDate||null,residual_value:0,arrears_advance:i===0?2.48:0,statement_date:i===0?'2026-08-10':null,calculation_start_date:i===0?'2026-08-25':null})))
 }
