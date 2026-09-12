@@ -1,3 +1,9 @@
+# v5.3.2 — Delete All Debts Fix
+
+This release adds a dedicated **Delete All Debts** action on Debt Payoff. It clears every debt account, clears vehicle payment history, updates local storage immediately, deletes cloud debt rows directly, and performs a final empty-state cloud save so deleted records do not return after refresh. Individual debt deletion also now deletes the exact Supabase row first before saving the remaining list.
+
+No new Supabase migration is required.
+
 # S&T Budget App v5.2 — Add & Delete Edition
 
 Premium visual refresh of the v5.0.1 finance app. No new Supabase migration is required. Includes upgraded dashboard gauges, vehicle payoff visuals, goal progress graphics, transaction/bill chips, refined dark mode, mobile navigation, motion, and polished empty/loading states.
@@ -67,3 +73,16 @@ Adds consistent Add and Delete controls across editable records: monthly expense
 - Premium hover effects, shimmer interactions, icon motion and card lift.
 - Animated page transitions with reduced-motion accessibility support.
 - Keeps the v5.2.1 delete-persistence fix.
+
+
+## v5.3.1 Debt Delete Fix
+- Vehicle Finance can now be deleted directly from Debt Payoff.
+- Every debt account has a delete control, including the last remaining debt.
+- Empty debt lists remain empty after refresh and cloud sync.
+- Deleting Vehicle Finance also clears its payment history.
+- Add Vehicle Finance and Add Debt controls are available after deletion.
+
+
+## v5.3.3
+- Fixes localhost showing stale v5.3.0/v5.3.2 UI by unregistering old service workers and clearing S&T caches during local development.
+- Keeps Delete Vehicle Finance and Delete All Debts from v5.3.2.

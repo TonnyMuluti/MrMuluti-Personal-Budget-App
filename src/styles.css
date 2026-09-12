@@ -128,3 +128,7 @@ tbody td:first-child{transition:transform .18s ease}
 @media(prefers-reduced-motion:reduce){.page-stage,.panel,.stat-card,.primary,.secondary,.icon-btn,.sidebar .nav-group-items button,.quick-nav button{animation:none!important;transition:none!important}}
 
 .sidebar .nav-group-items button{margin-top:0!important;padding-top:9px!important;border-top:0!important}
+.debt-hero-delete{margin-top:16px;display:inline-flex;align-items:center;gap:8px}.empty-state{min-height:240px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:12px;padding:28px;border:1px dashed var(--border,#dbe3ef);border-radius:18px}.empty-state.compact{min-height:130px}.empty-state h3,.empty-state p{margin:0}.debt-account-card .status{display:inline-flex;margin-top:12px}
+
+.panel-action-group{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.danger-button{display:inline-flex;align-items:center;justify-content:center;gap:8px}.debt-account-card .danger-button,.panel-action-group .danger-button{transition:transform .2s ease,box-shadow .2s ease,filter .2s ease}.panel-action-group .danger-button:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(220,38,38,.22);filter:saturate(1.08)}
+@media(max-width:700px){.panel-action-group{width:100%}.panel-action-group button{flex:1;min-width:150px}}

@@ -5,7 +5,15 @@ export function usePWA(){
     const onOnline=()=>setOnline(true),onOffline=()=>setOnline(false),before=e=>{e.preventDefault();setInstallEvent(e)}
     window.addEventListener('online',onOnline);window.addEventListener('offline',onOffline);window.addEventListener('beforeinstallprompt',before)
     let reg
-    if('serviceWorker'in navigator){navigator.serviceWorker.register('/sw.js').then(r=>{reg=r;setRegistration(r);if(r.waiting)setUpdateReady(true);r.addEventListener('updatefound',()=>{const w=r.installing;if(w)w.addEventListener('statechange',()=>{if(w.state==='installed'&&navigator.serviceWorker.controller)setUpdateReady(true)})})}).catch(console.error)}
+    const isLocalDev=location.hostname==='localhost'||location.hostname==='127.0.0.1'||import.meta.env.DEV
+    if('serviceWorker'in navigator){
+      if(isLocalDev){
+        navigator.serviceWorker.getRegistrations().then(rs=>Promise.all(rs.map(r=>r.unregister()))).catch(console.error)
+        if('caches'in window)caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('st-budget-')).map(k=>caches.delete(k)))).catch(console.error)
+      }else{
+        navigator.serviceWorker.register('/sw.js').then(r=>{reg=r;setRegistration(r);if(r.waiting)setUpdateReady(true);r.addEventListener('updatefound',()=>{const w=r.installing;if(w)w.addEventListener('statechange',()=>{if(w.state==='installed'&&navigator.serviceWorker.controller)setUpdateReady(true)})})}).catch(console.error)
+      }
+    }
     return()=>{window.removeEventListener('online',onOnline);window.removeEventListener('offline',onOffline);window.removeEventListener('beforeinstallprompt',before);if(reg?.installing)reg.installing.onstatechange=null}
   },[])
   const install=async()=>{if(!installEvent)return false;installEvent.prompt();const result=await installEvent.userChoice;setInstallEvent(null);return result.outcome==='accepted'}
