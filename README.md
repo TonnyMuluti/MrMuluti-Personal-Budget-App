@@ -86,3 +86,36 @@ Adds consistent Add and Delete controls across editable records: monthly expense
 ## v5.3.3
 - Fixes localhost showing stale v5.3.0/v5.3.2 UI by unregistering old service workers and clearing S&T caches during local development.
 - Keeps Delete Vehicle Finance and Delete All Debts from v5.3.2.
+
+
+## v5.3.5 Auto-hide Sidebar
+Desktop sidebar is compact by default and smoothly expands when hovered or keyboard-focused. Mobile drawer behaviour is unchanged.
+
+
+## v5.3.7
+Desktop sidebar is fully hidden. Move the pointer to the far-left 12px edge to reveal it; it closes when the pointer leaves. There is no permanent arrow/tab.
+
+
+## v5.3.9
+Desktop hidden sidebar now uses a visible three-line hamburger Menu button at the top-left. Click it to open or close the sidebar.
+
+
+## v5.4.0 — Integrated top-bar menu
+- Removed the floating hamburger control from the page edge.
+- Added the three-line navigation button inside the white top header, directly before the page title.
+- Desktop sidebar now opens and closes on click only.
+- Clicking the dimmed page area closes the sidebar.
+- Removed hover-to-open behaviour on desktop.
+- Mobile navigation behaviour remains unchanged.
+
+
+## v5.4.1 Visual Finance Edition
+Adds a compact, page-specific visual banner to every main app page. Three supplied finance images are bundled locally; additional finance-planning photography uses free Pexels image endpoints and therefore loads when online. The banners retain a dark overlay for legibility and collapse cleanly on mobile.
+
+
+## v5.4.3 Midnight Finance Edition
+Page imagery is now integrated as blended background artwork with navy/teal overlays and a soft fade into the app content, matching the visual finance concept while preserving readability.
+
+
+## v5.4.3 Midnight Finance Edition
+Applied the approved dark navy/glass visual direction across the app: blended page imagery, glass cards, blue/teal accents, dark tables/forms, harmonised charts, and responsive styling. Existing finance logic, Supabase sync, PWA/offline behaviour, and topbar menu are unchanged.

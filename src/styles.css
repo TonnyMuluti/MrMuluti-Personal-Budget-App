@@ -132,3 +132,321 @@ tbody td:first-child{transition:transform .18s ease}
 
 .panel-action-group{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.danger-button{display:inline-flex;align-items:center;justify-content:center;gap:8px}.debt-account-card .danger-button,.panel-action-group .danger-button{transition:transform .2s ease,box-shadow .2s ease,filter .2s ease}.panel-action-group .danger-button:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(220,38,38,.22);filter:saturate(1.08)}
 @media(max-width:700px){.panel-action-group{width:100%}.panel-action-group button{flex:1;min-width:150px}}
+
+
+/* v5.4.0 — integrated top-bar menu button and click-controlled desktop sidebar. */
+@media (min-width:761px){
+  .app-shell{grid-template-columns:1fr!important}
+  main{grid-column:1!important;min-width:0}
+  .desktop-menu-button{
+    display:grid!important;place-items:center;flex:0 0 auto;
+    width:40px;height:40px;border:1px solid #e2e8f0;border-radius:11px;
+    background:#fff;color:#0f172a;box-shadow:0 3px 10px rgba(15,23,42,.06);
+    transition:background .18s ease,border-color .18s ease,transform .18s ease,box-shadow .18s ease;
+  }
+  .desktop-menu-button:hover,.desktop-menu-button:focus-visible{
+    background:#f8fafc;border-color:#cbd5e1;box-shadow:0 6px 16px rgba(15,23,42,.10);
+    transform:translateY(-1px);outline:none
+  }
+  .sidebar{
+    position:fixed!important;top:0;bottom:0;left:0;width:245px!important;
+    transform:translateX(-105%)!important;
+    transition:transform .28s cubic-bezier(.2,.8,.2,1),box-shadow .28s ease!important;
+    z-index:80!important;box-shadow:none!important;
+  }
+  .sidebar.desktop-open{transform:translateX(0)!important;box-shadow:18px 0 45px rgba(15,23,42,.22)!important}
+  .sidebar-backdrop{
+    position:fixed;inset:0;z-index:70;border:0;padding:0;margin:0;
+    background:rgba(15,23,42,.18);backdrop-filter:blur(1px);cursor:default;
+  }
+  .theme-dark .desktop-menu-button{background:#0f172a;color:#e2e8f0;border-color:#334155}
+  .theme-dark .desktop-menu-button:hover,.theme-dark .desktop-menu-button:focus-visible{background:#172033;border-color:#475569}
+}
+@media(max-width:760px){.desktop-menu-button,.sidebar-backdrop{display:none!important}}
+
+
+/* v5.4.1 — page-specific financial imagery */
+.page-visual{min-height:142px;border-radius:24px;margin-bottom:20px;padding:24px 28px;display:flex;align-items:center;background-size:cover;background-position:center;overflow:hidden;box-shadow:0 14px 34px rgba(15,23,42,.12);position:relative;color:#fff}
+.page-visual:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(0,0,0,.08));pointer-events:none}
+.page-visual>div{position:relative;z-index:1;max-width:660px}
+.page-visual span{font-size:10px;font-weight:800;letter-spacing:.16em;color:#7dd3fc}
+.page-visual h2{margin:5px 0 4px;font-size:25px;line-height:1.08;color:#fff}
+.page-visual p{margin:0;color:rgba(255,255,255,.82);font-size:13px;line-height:1.45}
+@media(max-width:760px){.page-visual{min-height:120px;border-radius:18px;padding:20px;background-position:center}.page-visual h2{font-size:20px}.page-visual p{font-size:12px}}
+
+
+/* v5.4.2 — blended page background imagery inspired by the dark finance concept. */
+.content{position:relative;isolation:isolate;overflow:hidden;padding-top:22px}
+.page-visual{
+  --page-bg:none;
+  min-height:235px!important;
+  margin:0 0 0!important;
+  border-radius:26px!important;
+  padding:34px 34px 74px!important;
+  display:flex;align-items:flex-start;
+  background-image:
+    linear-gradient(92deg,rgba(4,19,45,.97) 0%,rgba(6,33,69,.88) 38%,rgba(5,67,91,.57) 68%,rgba(4,19,45,.32) 100%),
+    var(--page-bg)!important;
+  background-size:cover!important;
+  background-position:center 42%!important;
+  background-blend-mode:multiply,normal;
+  box-shadow:0 20px 48px rgba(15,23,42,.18)!important;
+  overflow:hidden;position:relative;color:#fff;
+}
+.page-visual:before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(circle at 78% 30%,rgba(37,99,235,.24),transparent 34%),
+    radial-gradient(circle at 62% 78%,rgba(15,118,110,.20),transparent 34%),
+    linear-gradient(180deg,rgba(2,8,23,.02) 0%,rgba(2,8,23,.12) 52%,rgba(245,247,251,.98) 100%);
+}
+.page-visual:after{
+  content:"";position:absolute;left:0;right:0;bottom:-1px;height:78px;pointer-events:none;
+  background:linear-gradient(180deg,transparent,rgba(245,247,251,.72) 45%,var(--st-bg,#f5f7fb) 100%);
+}
+.page-visual-copy{position:relative;z-index:2;max-width:660px;padding-top:4px}
+.page-visual-copy span{display:inline-flex;align-items:center;gap:8px;font-size:10px;font-weight:900;letter-spacing:.17em;color:#7dd3fc;text-shadow:0 2px 12px rgba(0,0,0,.35)}
+.page-visual-copy span:before{content:"";width:22px;height:2px;border-radius:99px;background:linear-gradient(90deg,#38bdf8,#2dd4bf)}
+.page-visual-copy h2{margin:9px 0 7px!important;font-size:30px!important;line-height:1.06!important;letter-spacing:-.035em;color:#fff!important;text-shadow:0 4px 20px rgba(0,0,0,.32)}
+.page-visual-copy p{margin:0!important;max-width:590px;color:rgba(239,246,255,.88)!important;font-size:13px!important;line-height:1.55!important;text-shadow:0 2px 12px rgba(0,0,0,.28)}
+.page-stage{position:relative;z-index:4;margin-top:-62px;padding:0 8px 8px}
+.page-stage>.stack:first-child,.page-stage>.panel:first-child{position:relative}
+.page-stage .panel,.page-stage .stat-card,.page-stage .vehicle-hero,.page-stage .household-hero,.page-stage .goal-priority-card{
+  backdrop-filter:saturate(120%) blur(8px);
+}
+.page-stage .panel{background:rgba(255,255,255,.965)}
+.page-stage .stat-card{background:rgba(255,255,255,.965)}
+.finance-hero{box-shadow:0 22px 54px rgba(2,20,56,.22)!important;border:1px solid rgba(125,211,252,.16)!important}
+
+/* Per-page focal positioning keeps important parts of each image visible. */
+.page-visual-dashboard,.page-visual-annual,.page-visual-insights{background-position:center 45%!important}
+.page-visual-budget,.page-visual-transactions,.page-visual-bills,.page-visual-alerts{background-position:center 52%!important}
+.page-visual-debt,.page-visual-savings,.page-visual-networth{background-position:center 48%!important}
+.page-visual-household,.page-visual-whatif{background-position:center 42%!important}
+.page-visual-assistant,.page-visual-reports,.page-visual-settings{background-position:center 55%!important}
+
+/* Dark theme: keep the same images but blend them into the app's dark palette. */
+.theme-dark .page-visual:before{
+  background:
+    radial-gradient(circle at 78% 30%,rgba(37,99,235,.27),transparent 34%),
+    radial-gradient(circle at 62% 78%,rgba(20,184,166,.18),transparent 34%),
+    linear-gradient(180deg,rgba(2,8,23,.03) 0%,rgba(2,8,23,.15) 58%,rgba(7,16,31,.98) 100%);
+}
+.theme-dark .page-visual:after{background:linear-gradient(180deg,transparent,rgba(7,16,31,.74) 48%,#07101f 100%)}
+.theme-dark .page-stage .panel,.theme-dark .page-stage .stat-card{background:rgba(15,27,46,.96)}
+
+@media(max-width:900px){
+  .page-visual{min-height:210px!important;padding:28px 26px 68px!important;border-radius:22px!important}
+  .page-stage{margin-top:-50px;padding-left:4px;padding-right:4px}
+  .page-visual-copy h2{font-size:26px!important}
+}
+@media(max-width:760px){
+  .content{padding-top:14px}
+  .page-visual{min-height:185px!important;padding:24px 20px 58px!important;border-radius:18px!important;background-position:center!important}
+  .page-visual-copy h2{font-size:23px!important}
+  .page-visual-copy p{font-size:12px!important;max-width:92%}
+  .page-stage{margin-top:-40px;padding:0 2px 6px}
+}
+
+
+/* =========================================================
+   v5.4.3 — Midnight Finance visual system
+   Applies the polished navy/glass look from the approved mockups
+   without changing budgeting logic or cloud/offline behaviour.
+   ========================================================= */
+:root{
+  --mf-bg:#071525;
+  --mf-bg-2:#0a1d33;
+  --mf-panel:rgba(9,31,54,.86);
+  --mf-panel-strong:rgba(8,28,49,.96);
+  --mf-border:rgba(94,183,255,.18);
+  --mf-text:#f7fbff;
+  --mf-muted:#98afc5;
+  --mf-blue:#1688ff;
+  --mf-cyan:#28c7ff;
+  --mf-teal:#1fd6ae;
+  --mf-shadow:0 18px 45px rgba(0,5,16,.28);
+}
+body{background:var(--mf-bg)!important;color:var(--mf-text)!important}
+.app-shell{background:linear-gradient(135deg,#06111f 0%,#08192b 46%,#0b2035 100%)!important;color:var(--mf-text)!important}
+main,.content{background:transparent!important;color:var(--mf-text)!important}
+.content{padding-top:18px!important}
+
+/* Header: compact, dark, integrated, and aligned with the concept. */
+.topbar{
+  background:rgba(6,22,39,.92)!important;
+  border-bottom:1px solid rgba(103,180,255,.14)!important;
+  color:var(--mf-text)!important;
+  backdrop-filter:blur(16px) saturate(135%);
+  box-shadow:0 10px 26px rgba(0,5,16,.12);
+}
+.topbar h1{color:#fff!important;letter-spacing:-.025em}
+.topbar p{color:var(--mf-muted)!important}
+.desktop-menu-button,.mobile-menu{
+  background:rgba(22,136,255,.12)!important;
+  color:#dff3ff!important;
+  border:1px solid rgba(86,177,255,.2)!important;
+}
+.desktop-menu-button:hover,.mobile-menu:hover{background:rgba(22,136,255,.24)!important;border-color:rgba(86,177,255,.38)!important}
+.top-actions select,.period-picker,.sync-pill,.topbar .secondary{
+  background:rgba(10,37,63,.76)!important;
+  color:#eaf6ff!important;
+  border-color:rgba(112,183,245,.16)!important;
+}
+.sync-pill{color:#88f0d0!important}
+
+/* Quick navigation becomes the small blue pill row seen in the mockups. */
+.quick-nav{background:rgba(7,24,42,.84)!important;border-bottom:1px solid rgba(83,168,244,.13)!important;backdrop-filter:blur(14px)}
+.quick-nav button{background:rgba(12,42,72,.72)!important;color:#a9c0d5!important;border-color:rgba(99,174,239,.14)!important;box-shadow:none!important}
+.quick-nav button:hover{color:#fff!important;background:rgba(17,69,116,.8)!important}
+.quick-nav button.active{color:#fff!important;background:linear-gradient(135deg,#1677f2,#0b9ddf)!important;border-color:rgba(102,199,255,.48)!important;box-shadow:0 8px 22px rgba(14,122,241,.24)!important}
+
+/* Slide-out navigation: same navy language, with bright active state. */
+.sidebar{
+  background:linear-gradient(180deg,#07182a 0%,#061321 100%)!important;
+  border-right:1px solid rgba(95,174,242,.15)!important;
+  box-shadow:22px 0 55px rgba(0,4,15,.32)!important;
+}
+.sidebar .brand{border-bottom:1px solid rgba(99,174,239,.12)!important}
+.sidebar .brand strong,.sidebar .brand span{color:#fff!important}
+.sidebar .brand span{color:#8da8c0!important}
+.brand-icon{background:linear-gradient(135deg,#1688ff,#23c4ff)!important;box-shadow:0 8px 25px rgba(22,136,255,.28)!important}
+.nav-group summary{color:#7691a9!important}
+.nav-group summary b{background:rgba(255,255,255,.06)!important;color:#7d9ab2!important}
+.nav-group-items button{color:#b3c6d7!important}
+.nav-group-items button:hover{background:rgba(35,133,220,.12)!important;color:#fff!important}
+.nav-group-items button.active{background:linear-gradient(90deg,#0e6bd9,#138fe9)!important;color:#fff!important;border-color:rgba(86,178,255,.32)!important;box-shadow:0 8px 18px rgba(9,105,219,.22)!important}
+.sidebar-footer{border-top-color:rgba(99,174,239,.12)!important;color:#8ea7bc!important}
+.sidebar-footer strong{color:#79e6cb!important}
+.sidebar-backdrop{background:rgba(0,8,20,.58)!important;backdrop-filter:blur(2px)}
+
+/* Per-page hero image now blends directly into the app instead of looking like a separate banner. */
+.page-visual{
+  min-height:290px!important;
+  margin:0!important;
+  padding:42px 42px 108px!important;
+  border-radius:24px!important;
+  border:1px solid rgba(103,183,255,.14)!important;
+  background-image:
+    linear-gradient(90deg,rgba(4,19,35,.98) 0%,rgba(5,29,51,.86) 35%,rgba(7,35,60,.46) 68%,rgba(6,27,47,.60) 100%),
+    var(--page-bg)!important;
+  background-size:cover!important;
+  background-position:center 46%!important;
+  background-blend-mode:multiply,normal!important;
+  box-shadow:0 26px 65px rgba(0,7,22,.33)!important;
+}
+.page-visual:before{
+  background:
+    radial-gradient(circle at 78% 24%,rgba(25,149,255,.36),transparent 28%),
+    radial-gradient(circle at 62% 74%,rgba(31,214,174,.18),transparent 30%),
+    linear-gradient(180deg,rgba(3,15,27,.02) 0%,rgba(3,16,29,.16) 58%,rgba(7,21,37,.98) 100%)!important;
+}
+.page-visual:after{height:96px!important;background:linear-gradient(180deg,transparent,rgba(7,21,37,.74) 47%,#071525 100%)!important}
+.page-visual-copy{max-width:720px!important;padding-top:6px!important}
+.page-visual-copy span{color:#6fd8ff!important;font-size:10px!important}
+.page-visual-copy h2{font-size:clamp(31px,3.25vw,46px)!important;max-width:760px;text-shadow:0 6px 26px rgba(0,0,0,.42)!important}
+.page-visual-copy p{max-width:650px!important;color:#d6e5f1!important;font-size:14px!important}
+
+/* Cards overlap the hero like the approved concept and use glass panels. */
+.page-stage{margin-top:-78px!important;padding:0 12px 18px!important}
+.panel,.stat-card,.debt-account-card,.calendar-day,.assistant-card,.goal-priority-card,
+.vehicle-progress-card,.vehicle-comparison>div,.auth-card{
+  background:linear-gradient(180deg,rgba(10,38,65,.94),rgba(7,29,51,.96))!important;
+  border-color:var(--mf-border)!important;
+  color:var(--mf-text)!important;
+  box-shadow:var(--mf-shadow)!important;
+}
+.panel,.stat-card,.debt-account-card,.goal-priority-card{backdrop-filter:blur(14px) saturate(120%)!important}
+.panel h2,.panel h3,.panel h4,.stat-card strong,.debt-account-card strong,.goal-priority-card strong{color:#fff!important}
+.panel p,.panel small,.stat-card span,.stat-card small,.debt-account-card small,.goal-priority-card p,.goal-priority-card small,.muted{color:var(--mf-muted)!important}
+
+/* Stat cards: thin colored edge, icon glow, less white space. */
+.stats-grid{gap:14px!important}
+.stat-card{position:relative;overflow:hidden;min-height:122px!important}
+.stat-card:before{content:"";position:absolute;left:0;top:0;right:0;height:2px;background:linear-gradient(90deg,#1688ff,#28c7ff,#1fd6ae);opacity:.88}
+.stat-card .stat-icon{background:rgba(28,141,235,.12)!important;color:#67d1ff!important;border:1px solid rgba(82,185,255,.18)}
+.stat-card.green .stat-icon{background:rgba(31,214,174,.12)!important;color:#65f0c5!important}
+.stat-card.amber .stat-icon{background:rgba(245,158,11,.13)!important;color:#ffc35c!important}
+.stat-card.purple .stat-icon{background:rgba(139,92,246,.14)!important;color:#c4a8ff!important}
+
+/* Tables, forms and controls stay readable inside the dark glass system. */
+table{color:#dbeaf5!important}
+thead th{color:#7f9ab2!important;border-bottom-color:rgba(105,177,239,.15)!important}
+tbody td{border-bottom-color:rgba(105,177,239,.10)!important}
+tbody tr:hover{background:rgba(39,121,191,.08)!important}
+input,select,textarea{
+  background:rgba(5,24,42,.86)!important;
+  color:#eef8ff!important;
+  border-color:rgba(100,176,241,.18)!important;
+}
+input:focus,select:focus,textarea:focus{border-color:#2c9eff!important;box-shadow:0 0 0 3px rgba(44,158,255,.12)!important}
+input::placeholder,textarea::placeholder{color:#6f8ba3!important}
+label{color:#91a9bd!important}
+.secondary{background:rgba(19,61,98,.72)!important;color:#d7e9f8!important;border-color:rgba(104,181,244,.18)!important}
+.secondary:hover{background:rgba(27,81,128,.88)!important;color:#fff!important}
+.primary{background:linear-gradient(135deg,#1677f2,#0da8e8)!important;box-shadow:0 8px 22px rgba(21,128,241,.24)!important}
+.danger-button{box-shadow:none!important}
+
+/* Progress bars and status chips become brighter on the navy base. */
+.progress-track,.vehicle-progress-track{background:rgba(105,164,213,.16)!important}
+.progress-track span,.vehicle-progress-track span{background:linear-gradient(90deg,#1688ff,#21d7b2)!important}
+.status.ok{background:rgba(30,211,163,.12)!important;color:#69f2c8!important;border-color:rgba(30,211,163,.18)!important}
+.status.watch{background:rgba(245,158,11,.13)!important;color:#ffc664!important;border-color:rgba(245,158,11,.2)!important}
+.status.over{background:rgba(239,68,68,.13)!important;color:#ff8c8c!important;border-color:rgba(239,68,68,.2)!important}
+
+/* Existing custom hero sections are harmonised with the approved mockup. */
+.finance-hero,.vehicle-hero,.household-hero,.assistant-hero,.networth-hero{
+  background:linear-gradient(135deg,rgba(8,43,75,.98),rgba(12,58,97,.95) 56%,rgba(7,84,91,.92))!important;
+  border:1px solid rgba(90,190,255,.16)!important;
+  box-shadow:0 22px 54px rgba(0,7,22,.28)!important;
+  color:#fff!important;
+}
+.finance-hero p,.vehicle-hero p,.household-hero p,.assistant-hero p,.networth-hero p{color:#bbcfdf!important}
+.gauge-card{background:rgba(5,27,48,.54)!important;border-color:rgba(110,191,255,.16)!important}
+.radial-gauge:after{background:#0a2946!important}
+
+/* Charts: darker plot surfaces and high-contrast labels. */
+.chart-box,.premium-chart,.debt-chart{background:transparent!important}
+.recharts-cartesian-grid line{stroke:rgba(142,177,207,.12)!important}
+.recharts-text{fill:#8fa8bd!important}
+.recharts-legend-item-text{color:#b9ccdc!important}
+
+/* Calendar & assistant refinements. */
+.calendar-day{box-shadow:none!important}
+.empty-day{background:rgba(4,19,34,.38)!important}
+.calendar-weekdays strong{color:#718ca4!important}
+.assistant-suggestions button{background:rgba(13,51,84,.75)!important;color:#cfe5f5!important;border-color:rgba(98,177,244,.14)!important}
+.assistant-suggestions button:hover{background:rgba(18,79,128,.85)!important;color:#fff!important}
+.assistant-card.good{background:rgba(14,87,68,.32)!important;border-color:rgba(40,216,165,.18)!important}
+.assistant-card.warn{background:rgba(112,69,11,.28)!important;border-color:rgba(245,158,11,.18)!important}
+
+/* Money figures and negative values. */
+.negative-money{color:#ff7f8c!important}
+
+/* Authentication uses the same premium identity. */
+.auth-shell{background:radial-gradient(circle at 70% 20%,rgba(20,132,236,.22),transparent 28%),linear-gradient(135deg,#06111f,#0a2036)!important}
+.auth-card{border-color:rgba(93,183,255,.18)!important}
+.auth-sub,.auth-security{color:#8fa8bd!important}
+.auth-links button{color:#61c7ff!important}
+
+/* Light/system preferences intentionally keep the approved dark finance skin.
+   Accent settings still influence primary actions through their existing selectors. */
+.theme-dark,.theme-system,.theme-light{background:transparent!important;color:var(--mf-text)!important}
+.theme-dark main,.theme-dark .content,.theme-system main,.theme-system .content,.theme-light main,.theme-light .content{background:transparent!important}
+.theme-dark .page-stage .panel,.theme-dark .page-stage .stat-card,
+.theme-light .page-stage .panel,.theme-light .page-stage .stat-card,
+.theme-system .page-stage .panel,.theme-system .page-stage .stat-card{background:linear-gradient(180deg,rgba(10,38,65,.94),rgba(7,29,51,.96))!important}
+
+/* Responsive: preserve the concept without shrinking text into the imagery. */
+@media(max-width:1050px){
+  .page-visual{min-height:250px!important;padding:34px 30px 94px!important}
+  .page-stage{margin-top:-65px!important}
+}
+@media(max-width:760px){
+  .content{padding:12px 12px 88px!important}
+  .page-visual{min-height:210px!important;padding:28px 22px 78px!important;border-radius:18px!important}
+  .page-visual-copy h2{font-size:27px!important}
+  .page-stage{margin-top:-52px!important;padding:0 2px 10px!important}
+  .quick-nav{overflow-x:auto!important;justify-content:flex-start!important}
+  .quick-nav button{flex:0 0 auto!important}
+}
