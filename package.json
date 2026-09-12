@@ -1,7 +1,7 @@
 {
   "name": "st-budget-app",
   "private": true,
-  "version": "3.1.0",
+  "version": "4.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -12,13 +12,12 @@
     "@supabase/ssr": "^0.12.7",
     "@supabase/supabase-js": "^2.116.0",
     "@vitejs/plugin-react": "latest",
+    "jspdf": "^4.2.1",
+    "jspdf-autotable": "^5.0.8",
     "lucide-react": "latest",
     "react": "latest",
     "react-dom": "latest",
     "recharts": "latest",
-    "vite": "latest",
-    "jspdf": "^2.5.2",
-    "jspdf-autotable": "^3.8.4",
-    "xlsx": "^0.18.5"
+    "vite": "latest"
   }
 }
