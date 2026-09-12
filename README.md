@@ -1,4 +1,4 @@
-# MrMuluti Personal Budget 2026 Pro — Smart Finance Edition v3.0
+# S&T Budget App — Smart Finance Edition v3.0
 
 Cloud budget app built with React, Vite and Supabase.
 
