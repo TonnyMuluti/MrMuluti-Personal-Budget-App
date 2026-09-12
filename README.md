@@ -1,3 +1,7 @@
+# S&T Budget App v5.1 — Visual Edition
+
+Premium visual refresh of the v5.0.1 finance app. No new Supabase migration is required. Includes upgraded dashboard gauges, vehicle payoff visuals, goal progress graphics, transaction/bill chips, refined dark mode, mobile navigation, motion, and polished empty/loading states.
+
 # S&T Budget App v5.0.1 — Final Complete Edition
 
 The final v5 release combines the six selected upgrades into one deployable Vite/React/Supabase app:
