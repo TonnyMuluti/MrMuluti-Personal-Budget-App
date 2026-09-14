@@ -450,3 +450,20 @@ label{color:#91a9bd!important}
   .quick-nav{overflow-x:auto!important;justify-content:flex-start!important}
   .quick-nav button{flex:0 0 auto!important}
 }
+
+/* v5.5.0 — private multi-user onboarding and account isolation UI */
+.onboarding-shell{min-height:100vh;display:grid;place-items:center;padding:28px;background:radial-gradient(circle at 75% 15%,rgba(18,132,240,.22),transparent 30%),linear-gradient(135deg,#05111f,#09233b 58%,#083b4b)}
+.onboarding-card{width:min(880px,100%);padding:38px;border:1px solid rgba(103,190,255,.18);border-radius:28px;background:linear-gradient(180deg,rgba(10,38,65,.96),rgba(7,29,51,.98));box-shadow:0 30px 80px rgba(0,8,24,.45);color:#eef8ff}
+.onboarding-badge{width:54px;height:54px;display:grid;place-items:center;border-radius:18px;background:linear-gradient(135deg,#1677f2,#17b8d6);box-shadow:0 12px 30px rgba(22,119,242,.28);margin-bottom:18px}
+.onboarding-card .eyebrow{display:block;color:#66d1ff;font-size:12px;font-weight:800;letter-spacing:.14em;margin-bottom:8px}
+.onboarding-card h1{margin:0 0 10px;font-size:clamp(30px,5vw,48px);line-height:1.05}
+.onboarding-lead{color:#a9c2d6;max-width:720px;font-size:16px;line-height:1.65;margin-bottom:24px}
+.privacy-feature-grid,.privacy-account-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:20px 0 26px}
+.privacy-feature-grid>div,.privacy-account-grid>div{display:grid;gap:7px;padding:18px;border:1px solid rgba(99,180,242,.15);border-radius:18px;background:rgba(5,26,46,.62)}
+.privacy-feature-grid svg,.privacy-account-grid svg{color:#55d7ff}
+.privacy-feature-grid strong,.privacy-account-grid strong{color:#fff}
+.privacy-feature-grid span,.privacy-account-grid span{color:#8fa9bd;font-size:13px;line-height:1.45}
+.onboarding-form{display:grid;grid-template-columns:2fr 1.2fr .8fr;gap:14px;margin:8px 0 22px}
+.onboarding-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.onboarding-card>small{color:#7894aa}
+@media(max-width:760px){.onboarding-card{padding:24px;border-radius:22px}.privacy-feature-grid,.privacy-account-grid,.onboarding-form{grid-template-columns:1fr}.onboarding-actions{flex-direction:column}.onboarding-actions button{width:100%}}

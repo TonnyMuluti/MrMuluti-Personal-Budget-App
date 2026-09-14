@@ -119,3 +119,14 @@ Page imagery is now integrated as blended background artwork with navy/teal over
 
 ## v5.4.3 Midnight Finance Edition
 Applied the approved dark navy/glass visual direction across the app: blended page imagery, glass cards, blue/teal accents, dark tables/forms, harmonised charts, and responsive styling. Existing finance logic, Supabase sync, PWA/offline behaviour, and topbar menu are unchanged.
+
+## v5.5.0 Multi User Privacy Edition
+
+This release isolates browser cache and cloud data by authenticated Supabase user ID. New accounts no longer inherit the previous user's local budget. A first-login onboarding screen starts each new user with a private blank workspace. Personal finance tables are protected by the included `supabase-v5.5-multi-user-security.sql` migration. Household data remains a separate, explicit sharing feature.
+
+### Required database step
+Before inviting other people to create accounts, open Supabase SQL Editor and run:
+
+`supabase-v5.5-multi-user-security.sql`
+
+Then test with two separate accounts: create a small transaction in Account A, sign out, sign in to Account B, and confirm Account B cannot see or modify Account A's data.
